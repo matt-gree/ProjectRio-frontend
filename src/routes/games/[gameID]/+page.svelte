@@ -151,7 +151,7 @@
             <div class="elo">Elo {homeElo}</div>
         </div>
         <div class="userAndScoreHome">
-            <a class='unstyled hover-change' href="/users/{userHome}">{userHome}</a> <br>
+            <a class='unstyled hover-change' href="/users/{userHome}">{userHome}</a> <br><br><br>   
             {scoreHome}
         </div>
         <div class="finalAndMode"> 
@@ -160,7 +160,7 @@
             <a class='unstyled hover-change' href="/modes/{gameMode_name}"><span class=gameTag>{gameMode_name}</span></a>
         </div>
         <div class="userAndScoreAway">
-            <a class='unstyled hover-change' href="/users/{userAway}">{userAway}</a> <br> 
+            <a class='unstyled hover-change' href="/users/{userAway}">{userAway}</a> <br><br><br>
             <span class="score">{scoreAway}</span>
         </div>
         <div>
