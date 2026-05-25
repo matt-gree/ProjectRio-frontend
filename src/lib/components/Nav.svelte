@@ -46,6 +46,11 @@
 				>
 			</li>
 			<li>
+				<a href="/muddyball" on:click={drawerClose}>
+					<span class="flex-auto">muddyball</span></a
+				>
+			</li>
+			<li>
 				<a href="/users" on:click={drawerClose}>
 					<span class="flex-auto">user stats</span></a
 				>
