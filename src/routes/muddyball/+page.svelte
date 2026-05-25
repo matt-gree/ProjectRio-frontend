@@ -31,7 +31,7 @@
     { name: "Paratroopa(R)",  price: 1  },
     { name: "Pianta(B)",      price: 4  },
     { name: "Pianta(R)",      price: 5  },
-    { name: "Pianta(Y)",      price: 5  },
+    { name: "Pianta(Y)",      price: 4  },
     { name: "Noki(B)",        price: 3  },
     { name: "Noki(R)",        price: 3  },
     { name: "Noki(G)",        price: 6  },
