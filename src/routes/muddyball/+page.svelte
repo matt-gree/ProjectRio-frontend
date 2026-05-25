@@ -100,9 +100,12 @@
   let copied = false;
   let rosterView: 'lineup' | 'field' = 'lineup';
 
-  // Drag state (field view)
+  // Drag state (field view — mouse/desktop)
   let dragFrom: number | null = null;
   let dragOver: number | null = null;
+
+  // Tap-to-select state (field view — touch/mobile)
+  let selectedFieldSlot: number | null = null;
 
   // Drag state (lineup view) — operates on lineupOrder indices
   let lineupDragFrom: number | null = null;
@@ -141,9 +144,27 @@
     roster = roster.map((s, idx) => idx === i ? null : s);
   }
 
+  // Tap-to-select handler (field view — works for both touch and mouse)
+  function handleFieldTap(i: number) {
+    if (selectedFieldSlot === null) {
+      if (roster[i]) selectedFieldSlot = i;         // select filled slot
+    } else if (selectedFieldSlot === i) {
+      selectedFieldSlot = null;                      // deselect same slot
+    } else {
+      // Swap the two slots
+      const next = [...roster];
+      [next[selectedFieldSlot], next[i]] = [next[i], next[selectedFieldSlot]];
+      const from = selectedFieldSlot;
+      lineupOrder = lineupOrder.map(idx => idx === from ? i : idx === i ? from : idx);
+      roster = next;
+      selectedFieldSlot = null;
+    }
+  }
+
   // Drag handlers (field view only)
   function onDragStart(i: number, e: DragEvent) {
     if (!roster[i]) { e.preventDefault(); return; }
+    selectedFieldSlot = null;
     dragFrom = i;
     if (e.dataTransfer) e.dataTransfer.effectAllowed = 'move';
   }
@@ -365,45 +386,59 @@
               on:keydown={(e) => { if ((e.key === 'Delete' || e.key === 'Backspace') && name) removeAt(i); }}
             >
               {#if name}
-                <button
-                  class="flex flex-col items-center gap-0.5 group transition-all
-                    {isDragSource ? 'opacity-40 scale-90' : ''}
-                    {isDragTarget ? 'scale-110' : ''}"
-                  on:click={() => removeAt(i)}
-                  title="Drag to move · Click to remove ({pos.name})"
-                >
-                  <div
-                    class="rounded-full p-0.5 transition-all
-                      {isDragTarget ? 'ring-2 ring-white ring-offset-1 ring-offset-transparent' : ''}"
-                  >
-                    <img
-                      src="/images/Characters/{name}.png"
-                      alt={name}
-                      class="w-9 h-9 object-contain drop-shadow-lg group-hover:opacity-70 transition-opacity"
-                    />
-                  </div>
-                  <span class="text-white text-[9px] font-bold bg-black/60 px-1 rounded leading-tight">{pos.label}</span>
-                </button>
-              {:else}
+                {@const isSelected = selectedFieldSlot === i}
                 <div
                   class="flex flex-col items-center gap-0.5 transition-all
-                    {isDragTarget ? 'scale-110' : 'opacity-60'}"
+                    {isDragSource ? 'opacity-40 scale-90' : ''}
+                    {isDragTarget ? 'scale-110' : ''}"
+                >
+                  <div class="relative">
+                    <button
+                      class="rounded-full p-0.5 transition-all block
+                        {isSelected ? 'ring-2 ring-white scale-110' : ''}
+                        {isDragTarget ? 'ring-2 ring-white ring-offset-1 ring-offset-transparent' : ''}"
+                      on:click={() => handleFieldTap(i)}
+                      title="{isSelected ? 'Tap another slot to swap' : 'Tap to select · Drag to move'} ({pos.name})"
+                    >
+                      <img
+                        src="/images/Characters/{name}.png"
+                        alt={name}
+                        class="w-9 h-9 object-contain drop-shadow-lg transition-opacity
+                          {isSelected ? '' : 'hover:opacity-70'}"
+                      />
+                    </button>
+                    {#if isSelected}
+                      <button
+                        class="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-error-500 text-white text-[9px] flex items-center justify-center leading-none"
+                        on:click|stopPropagation={() => { removeAt(i); selectedFieldSlot = null; }}
+                        title="Remove {name}"
+                      >✕</button>
+                    {/if}
+                  </div>
+                  <span class="text-white text-[9px] font-bold bg-black/60 px-1 rounded leading-tight">{pos.label}</span>
+                </div>
+              {:else}
+                {@const isSwapTarget = selectedFieldSlot !== null && selectedFieldSlot !== i}
+                <button
+                  class="flex flex-col items-center gap-0.5 transition-all
+                    {isDragTarget || isSwapTarget ? 'scale-110 opacity-100' : 'opacity-60'}"
+                  on:click={() => handleFieldTap(i)}
                 >
                   <div
                     class="w-9 h-9 rounded-full border-2 flex items-center justify-center transition-all
-                      {isDragTarget
+                      {isDragTarget || isSwapTarget
                         ? 'border-white bg-white/20'
                         : 'border-white/40 border-dashed'}"
                   >
-                    <span class="text-white/70 text-xs">{isDragTarget ? '↓' : '+'}</span>
+                    <span class="text-white/70 text-xs">{isDragTarget || isSwapTarget ? '↓' : '+'}</span>
                   </div>
                   <span class="text-white/70 text-[9px] font-bold">{pos.label}</span>
-                </div>
+                </button>
               {/if}
             </div>
           {/each}
         </div>
-        <p class="text-xs text-surface-400-500-token text-center">Drag to rearrange · Click to remove</p>
+        <p class="text-xs text-surface-400-500-token text-center">Tap to select &amp; swap · Drag to rearrange · Tap ✕ to remove</p>
       {/if}
 
       <!-- Stadium -->
