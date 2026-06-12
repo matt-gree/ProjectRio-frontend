@@ -1,0 +1,137 @@
+export const characters: { [key: string]: string } = {
+	'0': 'Mario',
+	'1': 'Luigi',
+	'2': 'DK',
+	'3': 'Diddy',
+	'4': 'Peach',
+	'5': 'Daisy',
+	'6': 'Yoshi',
+	'7': 'Baby Mario',
+	'8': 'Baby Luigi',
+	'9': 'Bowser',
+	'10': 'Wario',
+	'11': 'Waluigi',
+	'12': 'Koopa(G)',
+	'13': 'Toad(R)',
+	'14': 'Boo',
+	'15': 'Toadette',
+	'16': 'Shy Guy(R)',
+	'17': 'Birdo',
+	'18': 'Monty',
+	'19': 'Bowser Jr',
+	'20': 'Paratroopa(R)',
+	'21': 'Pianta(B)',
+	'22': 'Pianta(R)',
+	'23': 'Pianta(Y)',
+	'24': 'Noki(B)',
+	'25': 'Noki(R)',
+	'26': 'Noki(G)',
+	'27': 'Bro(H)',
+	'28': 'Toadsworth',
+	'29': 'Toad(B)',
+	'30': 'Toad(Y)',
+	'31': 'Toad(G)',
+	'32': 'Toad(P)',
+	'33': 'Magikoopa(B)',
+	'34': 'Magikoopa(R)',
+	'35': 'Magikoopa(G)',
+	'36': 'Magikoopa(Y)',
+	'37': 'King Boo',
+	'38': 'Petey',
+	'39': 'Dixie',
+	'40': 'Goomba',
+	'41': 'Paragoomba',
+	'42': 'Koopa(R)',
+	'43': 'Paratroopa(G)',
+	'44': 'Shy Guy(B)',
+	'45': 'Shy Guy(Y)',
+	'46': 'Shy Guy(G)',
+	'47': 'Shy Guy(Bk)',
+	'48': 'Dry Bones(Gy)',
+	'49': 'Dry Bones(G)',
+	'50': 'Dry Bones(R)',
+	'51': 'Dry Bones(B)',
+	'52': 'Bro(F)',
+	'53': 'Bro(B)'
+};
+
+export type CharacterClass = 'Balance' | 'Power' | 'Speed' | 'Technique';
+
+export const characterClasses: { [name: string]: { Class: CharacterClass; SimplifiedName: string } } = {
+	Mario: { Class: 'Balance', SimplifiedName: 'Mario' },
+	Luigi: { Class: 'Balance', SimplifiedName: 'Luigi' },
+	DK: { Class: 'Power', SimplifiedName: 'DK' },
+	Diddy: { Class: 'Speed', SimplifiedName: 'Diddy' },
+	Peach: { Class: 'Technique', SimplifiedName: 'Peach' },
+	Daisy: { Class: 'Balance', SimplifiedName: 'Daisy' },
+	Yoshi: { Class: 'Speed', SimplifiedName: 'Yoshi' },
+	'Baby Mario': { Class: 'Speed', SimplifiedName: 'Baby Mario' },
+	'Baby Luigi': { Class: 'Speed', SimplifiedName: 'Baby Luigi' },
+	Bowser: { Class: 'Power', SimplifiedName: 'Bowser' },
+	Wario: { Class: 'Power', SimplifiedName: 'Wario' },
+	Waluigi: { Class: 'Technique', SimplifiedName: 'Waluigi' },
+	'Koopa(G)': { Class: 'Balance', SimplifiedName: 'Koopa' },
+	'Toad(R)': { Class: 'Balance', SimplifiedName: 'Toad' },
+	Boo: { Class: 'Technique', SimplifiedName: 'Boo' },
+	Toadette: { Class: 'Speed', SimplifiedName: 'Toadette' },
+	'Shy Guy(R)': { Class: 'Balance', SimplifiedName: 'Shy Guy' },
+	Birdo: { Class: 'Balance', SimplifiedName: 'Birdo' },
+	Monty: { Class: 'Speed', SimplifiedName: 'Monty' },
+	'Bowser Jr': { Class: 'Power', SimplifiedName: 'Bowser Jr' },
+	'Paratroopa(R)': { Class: 'Technique', SimplifiedName: 'Paratroopa' },
+	'Pianta(B)': { Class: 'Power', SimplifiedName: 'Pianta' },
+	'Pianta(R)': { Class: 'Power', SimplifiedName: 'Pianta' },
+	'Pianta(Y)': { Class: 'Power', SimplifiedName: 'Pianta' },
+	'Noki(B)': { Class: 'Speed', SimplifiedName: 'Noki' },
+	'Noki(R)': { Class: 'Speed', SimplifiedName: 'Noki' },
+	'Noki(G)': { Class: 'Speed', SimplifiedName: 'Noki' },
+	'Bro(H)': { Class: 'Power', SimplifiedName: 'Bro' },
+	Toadsworth: { Class: 'Technique', SimplifiedName: 'Toadsworth' },
+	'Toad(B)': { Class: 'Balance', SimplifiedName: 'Toad' },
+	'Toad(Y)': { Class: 'Balance', SimplifiedName: 'Toad' },
+	'Toad(G)': { Class: 'Balance', SimplifiedName: 'Toad' },
+	'Toad(P)': { Class: 'Balance', SimplifiedName: 'Toad' },
+	'Magikoopa(B)': { Class: 'Technique', SimplifiedName: 'Magikoopa' },
+	'Magikoopa(R)': { Class: 'Technique', SimplifiedName: 'Magikoopa' },
+	'Magikoopa(G)': { Class: 'Technique', SimplifiedName: 'Magikoopa' },
+	'Magikoopa(Y)': { Class: 'Technique', SimplifiedName: 'Magikoopa' },
+	'King Boo': { Class: 'Power', SimplifiedName: 'King Boo' },
+	Petey: { Class: 'Power', SimplifiedName: 'Petey' },
+	Dixie: { Class: 'Technique', SimplifiedName: 'Dixie' },
+	Goomba: { Class: 'Balance', SimplifiedName: 'Goomba' },
+	Paragoomba: { Class: 'Speed', SimplifiedName: 'Paragoomba' },
+	'Koopa(R)': { Class: 'Balance', SimplifiedName: 'Koopa' },
+	'Paratroopa(G)': { Class: 'Technique', SimplifiedName: 'Paratroopa' },
+	'Shy Guy(B)': { Class: 'Balance', SimplifiedName: 'Shy Guy' },
+	'Shy Guy(Y)': { Class: 'Balance', SimplifiedName: 'Shy Guy' },
+	'Shy Guy(G)': { Class: 'Balance', SimplifiedName: 'Shy Guy' },
+	'Shy Guy(Bk)': { Class: 'Balance', SimplifiedName: 'Shy Guy' },
+	'Dry Bones(Gy)': { Class: 'Balance', SimplifiedName: 'Dry Bones' },
+	'Dry Bones(G)': { Class: 'Balance', SimplifiedName: 'Dry Bones' },
+	'Dry Bones(R)': { Class: 'Balance', SimplifiedName: 'Dry Bones' },
+	'Dry Bones(B)': { Class: 'Balance', SimplifiedName: 'Dry Bones' },
+	'Bro(F)': { Class: 'Power', SimplifiedName: 'Bro' },
+	'Bro(B)': { Class: 'Power', SimplifiedName: 'Bro' }
+};
+
+export function characterName(charId: number | string): string {
+	return characters[String(charId)] ?? `Char ${charId}`;
+}
+
+export function characterIdFromName(name: string): string | null {
+	const entry = Object.entries(characters).find(([, n]) => n.toLowerCase() === name.toLowerCase());
+	return entry ? entry[0] : null;
+}
+
+export function characterImage(name: string): string {
+	return `/images/Characters/${name}.png`;
+}
+
+export const stadiums: { [key: string]: string } = {
+	'0': 'Mario Stadium',
+	'1': 'Bowser Castle',
+	'2': 'Wario Palace',
+	'3': 'Yoshi Park',
+	'4': 'Peach Garden',
+	'5': 'DK Jungle'
+};
